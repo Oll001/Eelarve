@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <title>Päevane eelarve</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      max-width: 400px;
+    }
+    label, input {
+      display: block;
+      margin: 10px 0;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Päevane eelarve kalkulaator</h2>
+  
+  <label for="saldo">Kontojääk (€):</label>
+  <input type="number" id="saldo" step="0.01" required>
+
+  <label for="palgapaev">Järgmine palgapäev:</label>
+  <input type="date" id="palgapaev" required>
+
+  <button onclick="arvuta()">Arvuta</button>
+
+  <div class="result" id="vastus"></div>
+
+  <script>
+    function arvuta() {
+      const saldo = parseFloat(document.getElementById("saldo").value);
+      const palgaKuupaev = new Date(document.getElementById("palgapaev").value);
+      const tana = new Date();
+      tana.setHours(0, 0, 0, 0);
+
+      const paevadeVahe = Math.ceil((palgaKuupaev - tana) / (1000 * 60 * 60 * 24));
+
+      if (isNaN(saldo) || isNaN(paevadeVahe) || paevadeVahe <= 0) {
+        document.getElementById("vastus").innerText = "Palun sisesta kehtivad andmed!";
+        return;
+      }
+
+      const paevane = saldo / paevadeVahe;
+      document.getElementById("vastus").innerHTML =
+        `Päevi palgapäevani: <b>${paevadeVahe}</b><br>` +
+        `Päevane kululimiit: <b>${paevane.toFixed(2)} €</b>`;
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <title>Päevane eelarve</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      max-width: 400px;
+    }
+    label, input {
+      display: block;
+      margin: 10px 0;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Päevane eelarve kalkulaator</h2>
+  
+  <label for="saldo">Kontojääk (€):</label>
+  <input type="number" id="saldo" step="0.01" required>
+
+  <label for="palgapaev">Järgmine palgapäev:</label>
+  <input type="date" id="palgapaev" required>
+
+  <button onclick="arvuta()">Arvuta</button>
+
+  <div class="result" id="vastus"></div>
+
+  <script>
+    function arvuta() {
+      const saldo = parseFloat(document.getElementById("saldo").value);
+      const palgaKuupaev = new Date(document.getElementById("palgapaev").value);
+      const tana = new Date();
+      tana.setHours(0, 0, 0, 0);
+
+      const paevadeVahe = Math.ceil((palgaKuupaev - tana) / (1000 * 60 * 60 * 24));
+
+      if (isNaN(saldo) || isNaN(paevadeVahe) || paevadeVahe <= 0) {
+        document.getElementById("vastus").innerText = "Palun sisesta kehtivad andmed!";
+        return;
+      }
+
+      const paevane = saldo / paevadeVahe;
+      document.getElementById("vastus").innerHTML =
+        `Päevi palgapäevani: <b>${paevadeVahe}</b><br>` +
+        `Päevane kululimiit: <b>${paevane.toFixed(2)} €</b>`;
+    }
+  </script>
+</body>
+</html>
